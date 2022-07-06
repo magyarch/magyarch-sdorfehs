@@ -1,0 +1,262 @@
+############################################################################################
+
+## --- Author of Sdorfehs is Joshua Stein ---
+
+## Sdorfehs [starfish] is an enhanced successor of RatPoison.
+
+## Feel free to tweak and share.
+
+############################################################################################
+exec xmodmap .xmodmaprc
+#export GDK_SCALE=2
+#sleep 2s && bar.sh &
+#~/.config/polybar/launch.sh &
+exec xsetroot -cursor_name left_ptr
+exec xset r rate 400 30
+exec unclutter
+exec udiskie
+exec xset s off -dpms
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#(sleep 1s && picom --experimental-backend --shadow-exclude-reg '1920+0-0' --inactive-opacity 1.00  --opacity-rule "85:class_g ='urxvt'" --opacity-rule "80:class_g = 'rofi'" --opacity-rule "90:class_g = 'Alacritty'" --blur-background-exclude n:a:slop -CGfF -o 0.70 -O 0.028 -I 0.028 -t 0 -l 0 -r 7 -D2 -m 1.00) &
+pkill picom
+exec picom -b --config ~/.config/picom.conf --experimental-backends
+exec dunst
+#setbg &
+#feh --bg-fill --randomize ~/.local/bin/wallpapers/Future/*
+#pkill redshift
+#exec redshift -l 47.162495:19.503304 -t 6000:3600 -g 0.8 -m randr -v
+#udiskie -a &
+pkill -f change_background
+exec change_background
+
+
+#vselect 0
+#vrename 0
+
+
+#exec i3status > ~/.config/sdorfehs/bar
+
+
+# setting the escape key to the Caps_Lock key
+escape F13
+
+
+# Customization
+# -----------------------
+set rudeness 15
+set warp 0
+set font "JetBrains Mono Nerd Font:size=11:antialias=true"
+
+set bgcolor #1a1a1a
+set fgcolor #2e8b57
+set bwcolor #1a1a1a
+set fwcolor #2e8b57
+
+
+set padding 10 34 10 10
+set gap 5
+set border 3
+set ignoreresizehints 1
+set vscreens  6
+set stickyfmt %s%n: %60t
+
+
+set barsticky 0
+#set bargravity sw
+set barborder 3
+set barbordercolor #2e8b57
+set barpadding 6 2
+set barinpadding 1
+set bargravity c
+
+
+# Hooks
+# -------------------
+addhook newwindow exec autovscreen
+addhook restart exec pkill -f dzen2
+
+
+# Swap workspaces
+# -----------------------
+bind 0 vselect 0
+bind 1 vselect 1
+bind 2 vselect 2
+bind 3 vselect 3
+bind 4 vselect 4
+bind 5 vselect 5
+
+definekey top s-0 vselect 0
+definekey top s-1 vselect 1
+definekey top s-2 vselect 2
+definekey top s-3 vselect 3
+definekey top s-4 vselect 4
+definekey top s-5 vselect 5
+
+
+# Move current window to another workspace
+# -----------------------------------------
+definekey top M-0 vmove 0
+definekey top M-1 vmove 1
+definekey top M-2 vmove 2
+definekey top M-3 vmove 3
+definekey top M-4 vmove 4
+definekey top M-5 vmove 5
+
+
+# Unbinds
+# ------------------------
+unbind a
+unbind A
+unbind C-A
+unbind b
+unbind C-b
+unbind i
+unbind l
+unbind C-l
+unbind K
+unbind C-K
+unbind r
+unbind p
+unbind C-p
+unbind s
+unbind S
+unbind C-S
+unbind n
+unbind C-n
+unbind u
+unbind C-u
+unbind f
+unbind Return
+unbind C-Return
+unbind x
+unbind C-x
+unbind w
+unbind C-V
+unbind v
+unbind F1
+unbind F2
+unbind F3
+unbind F4
+unbind F5
+unbind F6
+unbind F7
+
+
+# Launch_apps
+# -----------------------------
+bind w exec $BROWSER
+bind r exec $TERMINAL -e $FILE
+bind Return exec $TERMINAL
+bind p exec discord
+bind P exec pcmanfm
+bind E exec subl
+bind d exec dmenu_run -i -c -g 1 -l 10 -p 'Run' -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font-12'
+
+
+# Function Keys
+# -------------------
+bind F1 help
+bind F2 exec edconf.sh
+bind F3 exec dmenurecord
+bind F4 sshot
+bind F5 exec maimpick
+bind F6 exec live
+bind F7 exec stop_live
+
+# Start alacritty with tabs
+definekey top s-T exec wmctrl -x -a "tabbed" || tabbed alacritty --embed
+
+# Start tmux with alacritty
+bind A exec wmctrl -x -a "alacritty" || alacritty -e tmux
+
+# show sdorfehs manpage
+definekey top s-m exec $TERMINAL -e man sdorfehs
+
+# Volume up/down
+# ---------------------------
+definekey top s-Up volup
+definekey top s-Down voldown
+
+# Alias
+# ----------------------------------------
+alias sr exec systemctl reboot
+alias poff exec systemctl poweroff
+alias atab exec wmctrl -x -a "tabbed" || tabbed alacritty --embed
+alias sshot exec import -window root png:$HOME/Képek/Képernyőképek/Képernyőképek-$(date +%s)$$.png
+alias volup exec pamixer --allow-boost -i 10 >/dev/null
+alias voldown exec pamixer --allow-boost -d 10 >/dev/null
+
+# Sdorfehs commands
+#--------------------------------------
+
+# Restart Sdorfehs
+definekey top s-x restart
+
+# Kill | Remove
+bind q delete
+definekey top s-q remove
+
+# Quit | Logout
+bind Q quit
+
+# Choose groups
+bind G exec starg
+
+bind e exec
+
+bind c colon
+
+# Resize frame
+bind R resize
+
+# Undo command
+bind U undo
+
+# Swap windows
+bind S swap
+
+# Onlyone
+bind o only
+
+# Show|Hide frame
+bind M-s exec dumporrestore
+
+# Swap windows
+bind C-Left exchangeleft
+bind C-Right exchangeright
+bind C-Up exchangeup
+bind C-Down exchangedown
+
+# Horizontal/Vertical
+bind h  exec split_and_focus horiz
+bind v  exec split_and_focus vert
+
+# LEFT ALTKEYBINDS (no win keypress)
+# -----------------------------------
+definekey top M-Tab next
+definekey top s-Tab focus
+
+# Focus
+# --------------------
+bind <UP> focusup
+bind <DOWN> focusdown
+bind <LEFT> focusleft
+bind <RIGHT> focusright
+
+# Resize
+# -------------------------
+definekey top M-h resize -30 0
+definekey top M-j resize  0 -30
+definekey top M-k resize  0  30
+definekey top M-l resize  30 0
+
+
+#exec i3status > ~/.config/sdorfehs/bar
+exec autovscreen
+#exec ~/.config/polybar/launch.sh
+exec vscreen_rename
+exec sleep 1 && sdorfehs_bar
+
+# -----------------------------END------------------------------------------
+
+
