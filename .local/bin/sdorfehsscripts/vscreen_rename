@@ -1,0 +1,10 @@
+#!/bin/sh
+
+vscreens=($(sdorfehs -c "vscreens" | cut -c 1))
+new_names=("web" "chat" "edit" "media" "steam" "movie")
+for i in "${vscreens[@]}"; do
+    sdorfehs -c "vselect $i"
+    sdorfehs -c "vrename ${new_names[$i]}"
+done
+# let's get back to the first vscreen :)
+sdorfehs -c "vselect 0"

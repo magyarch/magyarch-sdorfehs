@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [[ ! -e $HOME/.rpfdump ]] ; then
+  sdorfehs -c "fdump" > $HOME/.rpfdump; sdorfehs -c 'select -' -c only
+  sdorfehs -c "echo Window layout saved"
+else
+  sdorfehs -c "frestore $(cat $HOME/.rpfdump)"
+  rm -rf $HOME/.rpfdump
+  sdorfehs -c "echo Window layout restored"
+fi

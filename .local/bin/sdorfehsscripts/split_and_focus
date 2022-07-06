@@ -1,0 +1,9 @@
+#!/bin/sh
+[[ $1 == "horiz" ]] && DIR="vsplit"
+[[ $1 == "vert" ]] && DIR="hsplit"
+CUR_FRAMES=$($HOME/.local/bin/sdorfehsscripts/list_frames)
+sdorfehs -c "$DIR"
+NEW_FRAMES=$($HOME/.local/bin/sdorfehsscripts/list_frames)
+NEW_FRAME=$($HOME/.local/bin/sdorfehsscripts/frame_diff "$CUR_FRAMES" "$NEW_FRAMES")
+sdorfehs -c "fselect $NEW_FRAME"
+sdorfehs -c "exec $2"

@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# a script to assign specific windows to a specific vscreen in sdorfehs
+# used in `newwindow` hook
+
+win_class=$(xdotool getwindowfocus getwindowclassname)
+
+case "$win_class" in
+    # template, see proper examples in the README
+    "firefox"|"Brave-browser")
+        sdorfehs -c 'vmove 0'
+        ;;
+	"mpv"|"mplayer2")
+        sdorfehs -c 'vmove 5'
+        ;;
+       "discord"|"pidgin")
+	sdorfehs -c 'vmove 1'
+	;;
+       "subl"|"Subl")
+	sdorfehs -c 'vmove 2'
+	;;
+    # default case, use as you wish
+    *)
+        ;;
+esac
