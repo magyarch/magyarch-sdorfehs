@@ -7,14 +7,15 @@
 
 declare options=("alias
 zsh
-ratpoison
+sdorfehs
 profile
+picom
 vifm
 dzen
 xprofile
 quit")
 
-choice=$(echo -e "${options[@]}" | dmenu -i -c -g 1 -l 20 -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font-12' -p 'Konfigfájlok:')
+choice=$(echo -e "${options[@]}" | dmenu -i -c -g 2 -l 10 -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font-12' -p 'Konfigfájlok:')
 
 case "$choice" in
 	quit)
@@ -26,8 +27,8 @@ case "$choice" in
 	zsh)
 		choice="$HOME/.config/zsh/.zshrc"
 	;;
-	ratpoison)
-		choice="$HOME/.ratpoisonrc"
+	sdorfehs)
+		choice="$HOME/.config/sdorfehs/config"
 	;;
 	profile)
 		choice="$HOME/.profile"
@@ -36,13 +37,16 @@ case "$choice" in
 		choice="$HOME/.config/vifm/vifmrc"
 	;;
 	dzen)
-		choice="$HOME/.local/bin/rpscripts/bar.sh"
+		choice="$HOME/.local/bin/sdorfehsscripts/sdorfehs_bar"
 	;;
 	xprofile)
 		choice="$HOME/.xprofile"
+	;;
+        picom)
+		choice="$HOME/.config/picom.conf"
 	;;
 	*)
 		exit 1
 	;;
 esac
-subl -c "$choice"
+$TERMINAL -e $EDITOR "$choice"
