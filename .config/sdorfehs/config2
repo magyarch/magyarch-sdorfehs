@@ -62,23 +62,18 @@ set font "JetBrains Mono Nerd Font:size=11:antialias=true"
 msgwait 3
 startupmessage 1
 
-set bgcolor #000000
-set fgcolor #2e8b57
-set bwcolor #000000
-set fwcolor #2e8b57
+set bgcolor #c3cdc8
+set fgcolor #000000
+set bwcolor #c3cdc8
+set fwcolor #000000
 
 
-set padding 10 32 10 17
+set padding 10 32 10 10
 set gap 5
 set border 3
 set ignoreresizehints 1
 set vscreens  6
-set stickyfmt %c: %t [%n]
-
-# Display formats
-set infofmt %c: %t [%n]
-set framefmt %t [%n]
-
+set stickyfmt %c:%t
 
 
 set barsticky 1
@@ -177,7 +172,6 @@ bind F4 sshot
 bind F5 exec maimpick
 bind F6 exec live
 bind F7 exec stop_live
-bind F8 exec theme.sh
 
 # Start alacritty with tabs
 bind t atab
@@ -278,7 +272,7 @@ addhook newwindow exec ~/.local/bin/sdorfehsscripts/autovscreen
 addhook restart exec ~/.local/bin/sdorfehsscripts/autovscreen
 
 
-exec ~/.local/bin/myBar
+exec ~/.local/bin/myBar2
 
 
 exec ~/.local/bin/sdorfehsscripts/sdorfehs_bar

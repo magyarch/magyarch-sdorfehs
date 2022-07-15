@@ -1,0 +1,14 @@
+quit
+info
+winfmt
+quit
+poff
+sr
+quit
+echo date
+echo "date"
+echo $date
+exec sdorfehs -c "hsplit" -c "resize 200 0"
+apropos | diff
+exec apropos mv
+aprop
