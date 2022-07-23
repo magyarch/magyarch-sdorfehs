@@ -57,7 +57,7 @@ escape F13
 
 # Customization
 # -----------------------
-set rudeness 15
+set rudeness 13
 set font "JetBrains Mono Nerd Font:size=11:antialias=true"
 msgwait 3
 startupmessage 1
@@ -83,9 +83,9 @@ set framefmt %t [%n]
 
 set barsticky 1
 #set bargravity sw
-set barborder 0
-set barbordercolor #2e8b57
-set barpadding 8 4
+#set barborder 0
+#set barbordercolor #2e8b57
+set barpadding 6 2
 set barinpadding 1
 set bargravity sw
 

@@ -1,0 +1,36 @@
+#!/bin/sh
+
+declare options=("0
+1
+2
+3
+4
+5
+Quit")
+
+choice=$(echo -e "${options[@]}" | dmenu -i -c -g 1 -l 20 -fn 'JetBrains Mono Nerd Font-12' -p 'Vscreens: ' -nb '#1a1a1a' -sb '#2e8b57')
+
+case "$choice" in
+    quit)
+        echo "program terminated." && exit 1
+    ;;
+    0)
+            choice=exec sdorfehs -c "vselect 0"
+    ;;
+    1)
+	    choice=exec sdorfehs -c "vselect 1"
+    ;;
+    2)
+	    choice=exec sdorfehs -c "vselect 2"
+    ;;
+    3)
+	    choice=exec sdorfehs -c "vselect 3"
+    ;;
+    4)
+	    choice=exec sdorfehs -c "vselect 4"
+    ;;
+    5)
+	    choice=exec sdorfehs -c "vselect 5"
+esac
+
+"$choice"

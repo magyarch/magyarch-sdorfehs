@@ -12,3 +12,4 @@ exec sdorfehs -c "hsplit" -c "resize 200 0"
 apropos | diff
 exec apropos mv
 aprop
+quit
