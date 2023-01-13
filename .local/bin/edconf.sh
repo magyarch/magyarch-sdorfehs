@@ -15,7 +15,7 @@ dzen
 xprofile
 quit")
 
-choice=$(echo -e "${options[@]}" | dmenu -i -c -g 2 -l 10 -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font-12' -p 'Konfigfájlok:')
+choice=$(echo -e "${options[@]}" | dmenu -i -c -g 2 -l 10 -nb '#1a1a1a' -sb '#947cc3' -fn 'JetBrains Mono Nerd Font-12' -p 'Konfigfájlok:')
 
 case "$choice" in
 	quit)

@@ -13,7 +13,7 @@
 # #exec sleep 2s && sdorfehs_bar
 # # #export GDK_SCALE=2
 # # #exec i3status > ~/.config/sdorfehs/bar
-# # #exec ~/.config/polybar/launch.sh
+exec ~/.config/polybar/launch.sh
 # exec xsetroot -cursor_name left_ptr
 # exec xset r rate 400 30
 # # exec unclutter
@@ -22,7 +22,7 @@
 # exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # # #(sleep 1s && picom --experimental-backend --shadow-exclude-reg '1920+0-0' --inactive-opacity 1.00  --opacity-rule "85:class_g ='urxvt'" --opacity-rule "80:class_g = 'rofi'" --opacity-rule "90:class_g = 'Alacritty'" --blur-background-exclude n:a:slop -CGfF -o 0.70 -O 0.028 -I 0.028 -t 0 -l 0 -r 7 -D2 -m 1.00) &
 # # exec pkill picom
-# exec picom -b --config ~/.config/picom.conf --experimental-backends
+exec picom --config ~/.config/picom.conf 
 # # exec dunst
 # # #setbg &
 # #exec feh --bg-fill --randomize ~/.local/bin/wallpapers/Future/*
@@ -58,19 +58,19 @@ escape F13
 # Customization
 # -----------------------
 set rudeness 13
-set font "JetBrains Mono Nerd Font:size=11:antialias=true"
+set font "JetBrains Mono Nerd Font:size=10:antialias=true"
 msgwait 3
 startupmessage 1
 
 set bgcolor #000000
-set fgcolor #2e8b57
+set fgcolor #947cc3
 set bwcolor #000000
-set fwcolor #2e8b57
+set fwcolor #947cc3
 
 
-set padding 10 32 10 17
-set gap 5
-set border 3
+set padding 20 54 20 20
+set gap 10
+set border 8
 set ignoreresizehints 1
 set vscreens  6
 set stickyfmt %c: %t [%n]
@@ -83,8 +83,8 @@ set framefmt %t [%n]
 
 set barsticky 1
 #set bargravity sw
-#set barborder 0
-#set barbordercolor #2e8b57
+set barborder 0
+set barbordercolor #947cc3
 set barpadding 6 2
 set barinpadding 1
 set bargravity sw
@@ -92,12 +92,12 @@ set bargravity sw
 
 # Swap workspaces
 # -----------------------
-bind 0 vselect 0
-bind 1 vselect 1
-bind 2 vselect 2
-bind 3 vselect 3
-bind 4 vselect 4
-bind 5 vselect 5
+definekey top s-0 vselect 0
+definekey top s-1 vselect 1
+definekey top s-2 vselect 2
+definekey top s-3 vselect 3
+definekey top s-4 vselect 4
+definekey top s-5 vselect 5
 
 # definekey top s-0 vselect 0
 # definekey top s-1 vselect 1
@@ -158,43 +158,42 @@ unbind F7
 
 # Launch_apps
 # -----------------------------
-bind w exec $BROWSER
-bind r exec $TERMINAL -e $FILE
-bind Return exec $TERMINAL
-bind p exec discord
-bind P exec pcmanfm
-bind E exec subl
-bind d exec dmenu_run -i -c -g 3 -l 10 -p 'Run' -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font-12'
-bind a exec sdorfehs -c "echo `date`"
+definekey top s-w exec $BROWSER
+definekey top s-r exec $TERMINAL -e $FILE
+definekey top s-Return exec $TERMINAL
+definekey top s-p exec discord
+definekey top s-P exec pcmanfm
+definekey top s-E exec subl
+definekey top s-d exec dmenu_run -i -c -g 1 -l 10 -p 'Run' -nb '#1a1a1a' -sb '#947cc3' -fn 'JetBrains Mono Nerd Font-12'
+definekey top s-a exec sdorfehs -c "echo `date`"
 bind x exec picsound
 
 # Function Keys
 # -------------------
-bind F1 help
-bind F2 exec edconf.sh
-bind F3 exec dmenurecord
-bind F4 sshot
-bind F5 exec maimpick
-bind F6 exec live
-bind F7 exec stop_live
-bind F8 exec theme.sh
+definekey top s-F1 help
+definekey top s-F2 exec edconf.sh
+definekey top s-F3 exec dmenurecord
+definekey top s-F4 sshot
+definekey top s-F5 exec maimpick
+definekey top s-F6 exec live
+definekey top s-F7 exec stop_live
 
 # Start alacritty with tabs
-bind t atab
+definekey top s-t atab
 
 # Start tmux with alacritty
-bind T exec wmctrl -x -a "alacritty" || alacritty -e tmux
+definekey top s-T exec wmctrl -x -a "alacritty" || alacritty -e tmux
 
 # Show sdorfehs manpage
-bind m exec $TERMINAL -e man sdorfehs
+definekey top s-m exec $TERMINAL -e man sdorfehs
 
 # Music
-bind M exec $TERMINAL -e ncmpcpp
+definekey top s-M exec scratch Music
 
 # Volume up/down
 # ---------------------------
-definekey top M-Up volup
-definekey top M-Down voldown
+definekey top C-Up volup
+definekey top C-Down voldown
 
 # Alias
 # ----------------------------------------
@@ -210,48 +209,48 @@ alias voldown exec pamixer --allow-boost -d 10 >/dev/null
 #--------------------------------------
 
 # Restart Sdorfehs
-bind M-r restart
+definekey top M-Escape restart
 
 # Kill | Remove
-bind q delete
-bind Q remove
+definekey top s-q delete
+definekey top s-Q remove
 
 # LogoutMenu
-bind X exec logout.sh
+definekey top s-c exec eww open powermenu
 
 # Choose groups
-bind G exec starg
+definekey top s-G exec starg
 
-bind e exec
+definekey top s-Z exec
 
-bind c colon
+definekey top s-C colon
 
 # Resize frame
 bind R resize
 
 # Undo command
-bind U undo
+definekey top s-U undo
 
 # Swap windows
-bind S swap
-bind s exec pad.sh
+#bind S swap
+#bind s exec pad.sh
 
 # Onlyone
-bind o only
+definekey top s-o only
 
 # Show|Hide frame
-bind M-s exec dumporrestore
+definekey top s-D exec dumporrestore
 
 # Swap windows
-bind C-Left exchangeleft
-bind C-Right exchangeright
-bind C-Up exchangeup
-bind C-Down exchangedown
+definekey top s-Left exchangeleft
+definekey top s-Right exchangeright
+definekey top s-Up exchangeup
+definekey top s-Down exchangedown
 
 # Horizontal/Vertical
-bind h  exec split_and_focus horiz
-bind v  exec split_and_focus vert
-bind V exec sdorfehs -c "hsplit" -c "resize 200 0"
+definekey top s-h  exec split_and_focus horiz
+definekey top s-v  exec split_and_focus vert
+definekey top s-V exec sdorfehs -c "hsplit" -c "resize 200 0"
 
 # LEFT ALTKEYBINDS
 # -----------------------------------
@@ -260,10 +259,10 @@ definekey top s-Tab focus
 
 # Focus
 # --------------------
-bind <UP> focusup
-bind <DOWN> focusdown
-bind <LEFT> focusleft
-bind <RIGHT> focusright
+definekey top M-Up focusup
+definekey top M-Down focusdown
+definekey top M-Left focusleft
+definekey top M-Right focusright
 
 # Resize
 # -------------------------
@@ -271,17 +270,18 @@ definekey top M-h resize -30 0
 definekey top M-j resize  0 -30
 definekey top M-k resize  0  30
 definekey top M-l resize  30 0
+#definekey top M-b exec toggle_bar
+definekey top s-b exec polybar-msg cmd toggle
 
 # Hooks
 # -------------------
-addhook newwindow exec ~/.local/bin/sdorfehsscripts/autovscreen
-addhook restart exec ~/.local/bin/sdorfehsscripts/autovscreen
+#addhook newwindow exec ~/.local/bin/sdorfehsscripts/autovscreen
+#addhook restart pkill -f ~/.config/sdorfehs/bar
 
 
 exec ~/.local/bin/myBar
 
-
-exec ~/.local/bin/sdorfehsscripts/sdorfehs_bar
+#exec ~/.local/bin/sdorfehsscripts/sdorfehs_bar
 
 # -----------------------------END------------------------------------------
 

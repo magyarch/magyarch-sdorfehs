@@ -2,21 +2,25 @@
 
 # AUTOSTART
 #--------------------------------------------
-#xrandr --dpi 156
+xrandr --dpi 192
+export GDK_SCALE=2
+#sxhkd &
+#sxhkd -c ~/.config/i3/sxhkdrc &
 xmodmap .xmodmaprc
-#export GDK_SCALE=2
 #sleep 2s && sdorfehs_bar &
 #myBar &
+#autotiling &
 xsetroot -cursor_name left_ptr &
 xset r rate 400 30 &
 unclutter &
 xset s off -dpms &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-picom -b --config ~/.config/picom.conf --experimental-backends &
+#picom --config ~/.config/picom.conf &
 dunst &
 setbg &
-#feh --bg-fill --randomize ~/.local/bin/wallpapers/Future/*
+feh --bg-fill --scale ~/.local/bin/wallpapers/Future/2.png
 #redshift -l 47.162495:19.503304 -t 6000:3600 -g 0.8 -m randr -v &
-udiskie -a &
-#~/.local/bin/sdorfehsscripts/autovscreen &
-#change_background &
+#udiskie -a &
+#xwal.sh &
+#xrandr --output HDMI-0 --scale 2x2 --mode 1920x1080 --rotate left --output DP-0 --mode 3840x2160 --pos 3840x0 &
+

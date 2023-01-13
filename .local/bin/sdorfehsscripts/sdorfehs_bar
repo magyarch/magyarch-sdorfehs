@@ -5,7 +5,7 @@ trap 'update' 5
 FG="#c3cdc8"
 BG="#1a1a1a"
 WHITE="^fg(#c3cdc8)^bg()"
-GREEN="^fg(#2e8b57)^bg()"
+GREEN="^fg(#947cc3)^bg()"
 YELLOW="^fg(#F4F99D)^bg()"
 RED="^fg(#FF6E67)^bg()"
 PINK="^fg(#FF92D0)^bg()"
@@ -103,8 +103,8 @@ echo "$batstat  $battery %"
 }
 
 temp(){
-  #temp="$(sensors | awk '/^Tdie:/ {print $2}')"
-  temp="$(sensors | awk '/Core 0/ {print $3}')"
+  temp="$(sensors | awk '/^Tctl:/ {print $2}')"
+  #temp="$(sensors | awk '/Core 0/ {print $3}')"
   echo -e " $temp"
 
 }
@@ -126,7 +126,7 @@ while read name; do
     if [[ "$name" =~ "*" ]]
     then
         selected=`echo $name | cut -c 3-`
-        echo -n "^fg(#c3cdc8)^bg(#2e8b57) $selected $CLEAN"
+        echo -n "^fg(#c3cdc8)^bg(#947cc3) $selected $CLEAN"
     else
         notselected=`echo $name | cut -c 3-`
         echo -n " $notselected "
@@ -136,11 +136,11 @@ done
 
 }
 
-SLEEP_SEC=0.2
+SLEEP_SEC=1
 
 #loops forever outputting a line every SLEEP_SEC secs
 while true; do
-	echo "$WHITE$(dte) $(dte2)$CLEAN | $RED$(temp)$CLEAN | $BLUE$(mem)$CLEAN | $YELLOW$(loc)$CLEAN | $PINK$(wtr)$CLEAN | $(vol)" > ~/.config/sdorfehs/bar
+	echo "$WHITE$(dte) $(dte2)$CLEAN | $WHITE$(vol)$CLEAN" > ~/.config/sdorfehs/bar
 sleep $SLEEP_SEC
 done 
 

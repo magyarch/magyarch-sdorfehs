@@ -5,7 +5,7 @@ trap 'update' 5
 FG="#c3cdc8"
 BG="#000000"
 WHITE="^fg(#c3cdc8)^bg()"
-GREEN="^fg(#2e8b57)^bg()"
+GREEN="^fg(#947cc3)^bg()"
 YELLOW="^fg(#F4F99D)^bg()"
 RED="^fg(#FF6E67)^bg()"
 WHITE="^fg(#E6E6E6)^bg()"
@@ -72,29 +72,12 @@ mhdd() {
     echo " $mhdd GB"
 }
 
-## BATTERY
-bat() {
-batstat="$(cat /sys/class/power_supply/BAT0/status)"
-battery="$(cat /sys/class/power_supply/BAT0/capacity)"
-    if [ $batstat = 'Charging' ]; then
-    batstat="^"
-    elif [ $batstat = 'Discharging' ]; then
-    batstat="v"
-    elif [[ $battery -ge 5 ]] && [[ $battery -le 19 ]]; then
-    batstat=""
-    elif [[ $battery -ge 20 ]] && [[ $battery -le 39 ]]; then
-    batstat=""
-    elif [[ $battery -ge 40 ]] && [[ $battery -le 59 ]]; then
-    batstat=""
-    elif [[ $battery -ge 60 ]] && [[ $battery -le 79 ]]; then
-    batstat=""
-    elif [[ $battery -ge 80 ]] && [[ $battery -le 95 ]]; then
-    batstat=""
-    elif [[ $battery -ge 96 ]] && [[ $battery -le 100 ]]; then
-    batstat=""
-fi
+workspace() {
+    AWS="$(xprop -root '\t$0' _NET_CURRENT_DESKTOP | cut -f 2)"
+    WS="^fg(#c3cdc8)Workspace $(expr \( $AWS \))" 
+    NWS="$(xprop -root '\t$0' _NET_NUMBER_OF_DESKTOPS | cut -f 2)"
 
-echo "$batstat  $battery %"
+echo "$WS"
 
 }
 
@@ -122,7 +105,7 @@ while read name; do
     if [[ "$name" =~ "*" ]]
     then
         selected=`echo $name | cut -c 3-`
-        echo -n "^fg(#c3cdc8)^bg(#2e8b57) $selected $CLEAN"
+        echo -n "^fg(#c3cdc8)^bg(#947cc3) $selected $CLEAN"
     else
         notselected=`echo $name | cut -c 3-`
         echo -n " $notselected "
@@ -136,8 +119,8 @@ SLEEP_SEC=0.2
 
 #loops forever outputting a line every SLEEP_SEC secs
 while true; do
-   echo "$(work)$CLEAN"
+   echo "$(mhdd)$CLEAN" > ~/.config/sdorfehs/bar
 sleep $SLEEP_SEC
-done | dzen2 -ta c -w "1920" -h "22" -fn "JetBrains Mono Nerd Font:size=10:antialias=true" -fg "#c3cdc8" -bg "#000000"
+done 
 
 
